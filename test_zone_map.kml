@@ -45,6 +45,7 @@
       <name>Test Zone Layer</name>
       <Placemark>
         <name>Melbourne CBD</name>
+        <description>This is the location of our supported area.</description>
         <styleUrl>#poly-000000-1200-77-nodesc</styleUrl>
         <Polygon>
           <outerBoundaryIs>
