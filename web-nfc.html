@@ -22,7 +22,7 @@ scanButton.addEventListener("click", async () => {
 
     ndef.addEventListener("reading", ({ message, serialNumber }) => {
         var employeeName = employeeSN[serialNumber];
-        document.querySelector('#logz').textContent += `> Welcome: ${employeeName}` + '\n';
+        document.querySelector('#logz').textContent += `<br/>> Welcome: ${employeeName}` + '\n';
 
         console.log(`> Serial Number: ${serialNumber}`);
         document.querySelector('#logz').textContent += `> Serial Number: ${serialNumber}` + '\n';
