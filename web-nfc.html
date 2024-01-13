@@ -1,5 +1,6 @@
 <button id="scanButton">Scan</button>
 <div id="logz"></div>
+<div id="messagez"></div>
 
 <script>
 
@@ -22,13 +23,18 @@ scanButton.addEventListener("click", async () => {
 
     ndef.addEventListener("reading", ({ message, serialNumber }) => {
         var employeeName = employeeSN[serialNumber];
-        document.querySelector('#logz').textContent += `<br/>> Welcome: ${employeeName}` + '\n';
+        var today = new Date();
+        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var dateTime = date+' '+time;
 
-        console.log(`> Serial Number: ${serialNumber}`);
-        document.querySelector('#logz').textContent += `> Serial Number: ${serialNumber}` + '\n';
+        document.querySelector('#messagez').textContent = `> ${dateTime} Welcome: ${employeeName}`;
 
-        console.log(`> Records: (${message.records.length})`);
-        document.querySelector('#logz').textContent += `> Records: (${message.records.length})` + '\n';
+        //console.log(`> Serial Number: ${serialNumber}`);
+        //document.querySelector('#messagez').textContent += `> Serial Number: ${serialNumber}` + '\n';
+
+        //console.log(`> Records: (${message.records.length})`);
+        //document.querySelector('#messagez').textContent += `> Records: (${message.records.length})` + '\n';
     });
   } catch (error) {
     console.log("Argh! " + error);
