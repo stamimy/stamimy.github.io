@@ -3,6 +3,8 @@
 
 <script>
 
+const employeeSN = { "11:c9:20:3e": "Bu Elsha", "11:c9:20:3f": "Pak Dito", "11:c9:20:40": "Mas Bonar", "11:c9:20:41": "Mbak Lita" };
+
 scanButton.addEventListener("click", async () => {
   console.log("User clicked scan button");
   document.querySelector('#logz').textContent = "User clicked scan button";
@@ -11,7 +13,7 @@ scanButton.addEventListener("click", async () => {
     const ndef = new NDEFReader();
     await ndef.scan();
     console.log("> Scan started");
-    document.querySelector('#logz').textContent = "> Scan started";
+    document.querySelector('#logz').textContent = "> Scanning..." + '\n';
 
     ndef.addEventListener("readingerror", () => {
         console.log("Argh! Cannot read data from the NFC tag. Try another one?");
@@ -19,11 +21,14 @@ scanButton.addEventListener("click", async () => {
     });
 
     ndef.addEventListener("reading", ({ message, serialNumber }) => {
+        var employeeName = employeeSN[serialNumber];
+        document.querySelector('#logz').textContent += `> Welcome: ${employeeName}` + '\n';
+
         console.log(`> Serial Number: ${serialNumber}`);
-        document.querySelector('#logz').textContent += `> Serial Number: ${serialNumber}`;
+        document.querySelector('#logz').textContent += `> Serial Number: ${serialNumber}` + '\n';
 
         console.log(`> Records: (${message.records.length})`);
-        document.querySelector('#logz').textContent += `> Records: (${message.records.length})`;
+        document.querySelector('#logz').textContent += `> Records: (${message.records.length})` + '\n';
     });
   } catch (error) {
     console.log("Argh! " + error);
